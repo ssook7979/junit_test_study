@@ -5,6 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.hspark.iloveyouboss.domain.Answer;
+import com.hspark.iloveyouboss.domain.Bool;
+import com.hspark.iloveyouboss.domain.BooleanQuestion;
+import com.hspark.iloveyouboss.domain.Criteria;
+import com.hspark.iloveyouboss.domain.Criterion;
+import com.hspark.iloveyouboss.domain.Profile;
+import com.hspark.iloveyouboss.domain.Weight;
+
 class ProfileTest {
 	private Profile profile;
 	private BooleanQuestion question;

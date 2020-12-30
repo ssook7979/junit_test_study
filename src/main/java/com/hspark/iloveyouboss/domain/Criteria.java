@@ -1,4 +1,4 @@
-package com.hspark.iloveyouboss;
+package com.hspark.iloveyouboss.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
