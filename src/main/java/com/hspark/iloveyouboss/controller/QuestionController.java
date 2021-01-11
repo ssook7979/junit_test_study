@@ -43,6 +43,7 @@ public class QuestionController {
 		return persist(new BooleanQuestion(text));
 	}
 	
+	// clock 주입: 'test double'의 역할을 한다 (p.112)
 	void setClock(Clock clock) {
 		this.clock = clock;
 	}
