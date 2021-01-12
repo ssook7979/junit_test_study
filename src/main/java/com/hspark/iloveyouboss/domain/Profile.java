@@ -31,6 +31,20 @@ public class Profile {
 		boolean kill = false;
 		boolean anyMatches = false;
 		for (Criterion criterion: criteria) {
+			/*
+			 * p.171 - 172
+			 * 리팩토링한 코드는 디메테르의 법칙(the Law of Demeter)를 위반하지 않음
+			 * 디메테르의 법칙(the Law of Demeter): 다른 객체로 전파되는 연쇄적인 메소드 호출을 피해야 함
+			 * 
+			 * answer 임시변수로 추출
+			 * 
+			 *  **임시변수의 활용**
+			 *  - 값 비싼 비용의 계산값을 캐시에 저장
+			 *  - 메소드 몸체에서 변경되는 것들을 수집
+			 *  - 코드의 의도를 명확하게 함
+			 */
+			// 
+			
 			Answer answer = answerMatching(criterion);
 			boolean match = criterion.matches(answer);
 			
