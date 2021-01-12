@@ -24,23 +24,29 @@ public class Profile {
 	public void add(Answer answer) {
 		answers.put(answer.getQuestionText(), answer);
 	}
-
+	
+	/*
+	 * **과한 refactoring?**
+	 * refactoring 한 메소드들이 3번의 for-loop을 돌고 있음
+	 * 성능을 측정하여 크게 문제되는 사항이 아니면 코드의 명확성을 높이는 편이 좋다.
+	 */
 	public boolean matches(Criteria criteria) {
 		calculateScore(criteria);
 		
-		boolean kill = false;
-		for (Criterion criterion: criteria) {
-			boolean match = criterion.matches(answerMatching(criterion));
-			
-			if (!match && criterion.getWeight() == Weight.MustMatch) {
-				kill = true;
-			}
-			
-		}
-		if (kill) {
-			return false;
+		if(doesNotMeetAnyMustMatchCriterion(criteria)) {
+			return false; 
 		}
 		return anyMatches(criteria);
+	}
+
+	private boolean doesNotMeetAnyMustMatchCriterion(Criteria criteria) {
+		for (Criterion criterion: criteria) {
+			boolean match = criterion.matches(answerMatching(criterion));
+			if (!match && criterion.getWeight() == Weight.MustMatch) {
+				return true;
+			}	
+		}
+		return true;
 	}
 
 	private void calculateScore(Criteria criteria) {
