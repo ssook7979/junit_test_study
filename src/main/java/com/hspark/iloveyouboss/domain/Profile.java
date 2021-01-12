@@ -47,7 +47,7 @@ public class Profile {
 		// -> inline 코드로 변환
 		
 		// matches 메소드의 핵심 목표
-		// Refactoroing Point: 2와 3은 같은 조건인데 서로 떨어져있어서 목표가 명확하게 드러나지 않는다.
+		// Refactoroing Point: 1의 목표가 명확하게 드러나지 않는다.
 		for (Criterion criterion: criteria) {
 			boolean match = criterion.matches(answerMatching(criterion));
 			
