@@ -43,10 +43,10 @@ public class Profile {
 			 *  - 메소드 몸체에서 변경되는 것들을 수집
 			 *  - 코드의 의도를 명확하게 함
 			 */
-			// 
 			
-			Answer answer = answerMatching(criterion);
-			boolean match = criterion.matches(answer);
+			// answer 변수가 코드를 더 명확하게 해주지 않고 한번만 사용되므로 굳이 변수로 추출하지 않아도 된다.
+			// -> inline 코드로 변환
+			boolean match = criterion.matches(answerMatching(criterion));
 			
 			if (!match && criterion.getWeight() == Weight.MustMatch) {
 				kill = true;
