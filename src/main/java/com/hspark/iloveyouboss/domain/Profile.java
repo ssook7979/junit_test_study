@@ -63,7 +63,7 @@ public class Profile {
 			// 2. weight가 MustMatch일 경우 프로파일 답변과 매칭되지 않으면 false 반환
 			return false;
 		}
-		// 3. weight가 MustMatch가 아닐경우 프로파일 답변과 매칭되면 true 반환
+		// 3. weight가 MustMatch가 아닐 경우 프로파일 답변과 매칭되면 true 반환
 		return anyMatches(criteria);
 	}
 
