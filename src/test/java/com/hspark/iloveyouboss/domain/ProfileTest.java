@@ -32,7 +32,8 @@ class ProfileTest {
 	public void createCriteria() {
 		criteria = new Criteria();
 	}
-
+	
+	@BeforeEach
 	public void createQuestionsAndAnswers() {
 		questionIsThereRelocation = new BooleanQuestion("Relocation package?");
 		answerThereIsRelocation = new Answer(questionIsThereRelocation, Bool.TRUE);
@@ -81,7 +82,7 @@ class ProfileTest {
 	
 	@Test
 	void matchAnswersFalseWhenNoneOfMultipleCriteriaMatch() {
-		profile.add(answerThereIsRelocation);
+		profile.add(answerThereIsNoRelocation);
 		profile.add(answerDoesNotReimburseTuition);
 		criteria.add(new Criterion(answerThereIsRelocation, Weight.Important));
 		criteria.add(new Criterion(answerReimbursesTuition, Weight.Important));

@@ -1,7 +1,11 @@
 package com.hspark.iloveyouboss.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Profile {
 	
@@ -28,8 +32,7 @@ public class Profile {
 		boolean anyMatches = false;
 		for (Criterion criterion: criteria) {
 			Answer answer = answers.get(criterion.getAnswer().getQuestionText());
-			boolean match = criterion.getWeight() == Weight.DontCare ||
-					answer.match(criterion.getAnswer());
+			boolean match = matches(criterion, answer);
 			
 			if (!match && criterion.getWeight() == Weight.MustMatch) {
 				kill = true;
@@ -44,8 +47,33 @@ public class Profile {
 		}
 		return anyMatches;
 	}
+
+	private boolean matches(Criterion criterion, Answer answer) {
+		boolean match = criterion.getWeight() == Weight.DontCare ||
+				answer.match(criterion.getAnswer());
+		return match;
+	}
 	
 	public int score() {
 		return score;
+	}
+
+	public List<Answer> classicFind(Predicate<Answer> pred) {
+	   List<Answer> results = new ArrayList<Answer>();
+	   for (Answer answer: answers.values())
+	      if (pred.test(answer))
+	         results.add(answer);
+	   return results;
+	}
+	
+	@Override
+	public String toString() {
+	  return name;
+	}
+	
+	public List<Answer> find(Predicate<Answer> pred) {
+	   return answers.values().stream()
+	         .filter(pred)
+	         .collect(Collectors.toList());
 	}
 }

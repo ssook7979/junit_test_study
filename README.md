@@ -110,5 +110,55 @@ p.134 - p.136
 	- object 멤버변수의 범위: 캡슐화 하여 property가 범위를 벗어나면 exception을 발생하는지 검증
 		- 필요한 값을 기본형에 저장하는 것을 지양해야 한다(primitive obsession, 기본형 중독 코드 냄새)
 	- 내부로직 실행 이후 object 멤버변수의 범위: After method를 통해 검증
-	
+## [R]eference
+- 범위를 넘어서는 것을 참조하고 있ㄴ느가
+- 어떤 외부의존성이 있는가
+- 특정 상태의 객체에 의존하고 있는가
+- 필수의존성 외의 다른 조건
+등 을 고려해야 한다.
 
+### 예시
+- 고객이 어떠한 동작을 하기 전에 로그인 상태인가
+- stack pop()을 호출하기 전에 stack이 비어있지 않은 상태인가
+
+### pre/postconditions
+- 사전조건(preconditions)을 만족하지 않을 때 gracefully 동작하는가
+	- transmission 예시에서는 Gear를 DRIVE -> PARK로 변환하는 것을 허용해서는 안된다.
+		- ignoresShiftToParkWhileInDrive 참고
+- 사후조건(postconditions)을 만족하는가
+	- 메소드의 반환값이 기대값과 일치하는가
+	- 부작용으로 발생한 값의 변화가 기대값과 일치하는가
+		- allowsShiftToParkWhenNotMoving에서 breakToStop을 호출하면 속도가 0이 됨
+## [E]xistence
+- 값이 null, 0, 비어있는지, 네트워크가 다운되었는지 등에 대해 검증해야 한다.
+
+## [C]ardinality
+- 0-1-n 경계 조건을 고려한다.
+- simplify design with zero one many(http://agileinaflash.blogspot.com/2012/06/simplify-design-with-zero-one-many.html)
+
+## [T]ime
+고려해야할 것
+- 상대적 시간(시간 순서)
+- 절대적 시간(측정된 시간)
+- 동시성 문제들
+
+### 예시
+- 상대적 시간
+	- 메소드 호출 순서
+		- login - logout
+		- open - read - close
+	- 타임아웃
+		- 수명이 짧은 자원에 대해 코드가 얼마나 기다릴 수 있는가
+		- 무한대기에 빠질 수도 있음
+- 절대적 시간
+	- 시간에 대한 의존성으 주입하여 컨트롤 가능하도록 한다.
+	- 테스트 예시 있음
+- 동시성 문제들(p.163 요약)
+	- 동시에 같은 객체를 다수의 스레드가 접근한다면
+		- 전역 혹은 인스턴스 수준의 데이터나 메서드에 동기화 해야하나?
+	- 파일 혹은 하드웨어에 외적인 접근은 어떻게 처리해야 하나?
+	- 클라이언트에 동시성 요구 사항이 있다면 다수의 클라이언트 스레드를 보여주는 테스트를 작성할 필요가 있다.
+# 코드 리팩토링
+- 낮은 중복성과 높은 명확성을 가지는 것이 목표
+- 명확성
+	- 이름 짓기(코드의 의도를 전달하는 가장 좋은 수단)
