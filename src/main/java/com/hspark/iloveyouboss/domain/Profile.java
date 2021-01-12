@@ -26,9 +26,12 @@ public class Profile {
 	}
 	
 	/*
-	 * **과한 refactoring?**
-	 * refactoring 한 메소드들이 3번의 for-loop을 돌고 있음
-	 * 성능을 측정하여 크게 문제되는 사항이 아니면 코드의 명확성을 높이는 편이 좋다.
+	 * ** matches 메소드 작동 알고리즘 **
+	 * - calculateScore: 주어진 조건에 따라 점수를 계산
+	 * - doesNotMeetAnyMustMatchCriterion: 어떤 필수조건을 만족하지 않으면 false 반환
+	 * - anyMatches: 어떤 조건에 적어도 한개라도 만족하는지 여부를 반환
+	 * 
+	 * 리팩토링 후 우려할 만한 성능의 저하가 있는지 여부를 테스트하여 리팩토링 할지를 결정한다.
 	 */
 	public boolean matches(Criteria criteria) {
 		calculateScore(criteria);
