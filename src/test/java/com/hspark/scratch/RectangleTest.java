@@ -2,8 +2,6 @@ package com.hspark.scratch;
 
 import static com.hspark.scratch.ConstrainsSidesTo.constrainsSidesTo;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.is;
-
 import java.awt.Point;
 
 import org.junit.jupiter.api.AfterEach;
