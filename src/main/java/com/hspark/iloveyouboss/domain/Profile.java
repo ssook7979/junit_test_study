@@ -45,6 +45,9 @@ public class Profile {
 		
 		// answer 변수가 코드를 더 명확하게 해주지 않고 한번만 사용되므로 굳이 변수로 추출하지 않아도 된다.
 		// -> inline 코드로 변환
+		
+		// matches 메소드의 핵심 목표
+		// Refactoroing Point: 2와 3은 같은 조건인데 서로 떨어져있어서 목표가 명확하게 드러나지 않는다.
 		for (Criterion criterion: criteria) {
 			boolean match = criterion.matches(answerMatching(criterion));
 			
@@ -52,13 +55,16 @@ public class Profile {
 				kill = true;
 			}
 			if (match) {
+				// 1. 매칭되는 조건의 가중치를 합하여 점수를 계산한다.
 				score += criterion.getWeight().getValue();
 			}
 			anyMatches |= match;
 		}
 		if (kill) {
+			// 2. weight가 MustMatch일 경우 프로파일 답변과 매칭되지 않으면 false 반환
 			return false;
 		}
+		// 3. weight가 MustMatch가 아닐경우 프로파일 답변과 매칭되면 true 반환
 		return anyMatches;
 	}
 
