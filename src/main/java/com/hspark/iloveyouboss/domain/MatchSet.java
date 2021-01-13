@@ -18,6 +18,8 @@ public class MatchSet {
 	 * - 매번 계산하는 것은 성능저하를 일으키는가?
 	 * 	 => 지연 초기화(lazy initialization) 고려
 	 * 
+	 * TODO: Visitor 패턴을 사용하여 해결하는 방안은?
+	 * 
 	 */
 	public int getScore() {
 		int score = 0;
