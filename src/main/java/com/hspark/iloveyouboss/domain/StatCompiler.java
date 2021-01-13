@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class StatCompiler {
-	static Question q1 = new BooleanQuestion("Tuition reimbursement?");
-	static Question q2 = new BooleanQuestion("Relocation package?");
+	static Question q1 = new BooleanQuestion(1, "Tuition reimbursement?");
+	static Question q2 = new BooleanQuestion(2, "Relocation package?");
 	
 	class QuestionController {
 		Question find(int id) {
