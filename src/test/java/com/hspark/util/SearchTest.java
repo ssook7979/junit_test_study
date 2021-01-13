@@ -17,15 +17,14 @@ class SearchTest {
 	
 	@Test
 	public void testSearch() throws Exception {
-		String pageContent = "There are certain queer times and occasions "
+		// 테스트 데이터를 생성하는 부분을 추상화한다.
+		ByteArrayInputStream stream = streamOn("There are certain queer times and occasions "
 				+ "in this strange mixed affair we call life when a man "
 				+ "takes this whole universe for a vast practical joke, "
 				+ "though the wit thereof he but dimly discerns, and more "
 				+ "than suspects that the joke is at nobody's expense but "
-				+ "his own.";
-		byte[] bytes = pageContent.getBytes();
-		ByteArrayInputStream stream = new ByteArrayInputStream(bytes);
-		// search
+				+ "his own.");
+		
 		Search search = new Search(stream, "practical joke", ANY_TITLE);
 		Search.LOGGER.setLevel(Level.OFF);
 		search.setSurroundingCharacterCount(10);
@@ -47,6 +46,10 @@ class SearchTest {
 		assertThat(search.getMatches()).isEmpty();
 		stream.close();
 
+	}
+
+	private ByteArrayInputStream streamOn(String pageContent) {
+		return new ByteArrayInputStream(pageContent.getBytes());
 	}
 
 }
