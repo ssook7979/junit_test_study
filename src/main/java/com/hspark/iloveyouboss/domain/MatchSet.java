@@ -6,6 +6,7 @@ import java.util.Map;
  * Profile class로부터 score를 계산하는 로직을 분리한다.
  */
 public class MatchSet {
+	// code smell: shotgun surgery(기능의 산재)
 	private Map<String, Answer> answers;
 	private Criteria criteria;
 
