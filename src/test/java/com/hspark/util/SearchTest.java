@@ -2,12 +2,11 @@ package com.hspark.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.hspark.util.ContainsMatches.containsMatches;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
 import java.util.logging.Level;
 
 import org.junit.jupiter.api.Test;
@@ -31,11 +30,9 @@ class SearchTest {
 		search.execute();
 		assertFalse(search.errored());
 		// 이 여러개의 assertions는 하나의 assertion으로 축약하여 가독성을 높일 수 있다.
-		List<Match> matches = search.getMatches();
-		assertTrue(matches.size() >= 1);
-		Match match = matches.get(0);
-		assertThat(match.searchString).isEqualTo("practical joke");
-		assertThat(match.surroundingContext).isEqualTo("or a vast practical joke, though t");
+		org.hamcrest.MatcherAssert.assertThat(search.getMatches(), containsMatches(new Match[] { 
+		         new Match("1", "practical joke", 
+		                   "or a vast practical joke, though t") }));
 		stream.close();
 		
 		// negative
