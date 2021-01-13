@@ -43,15 +43,19 @@ public class Profile {
 	 * 	    메소드는 1)명령을 실행(부작용을 생성하는 어떤 작업을 함)하거나 2)질의에 대답(어떤 값 반환)하는 작업을 할 수 있으며,
 	 * 	  두 작업을 모두 하면 안된다.(p.192)
 	 */
+	/*
 	public boolean matches(Criteria criteria) {
 		MatchSet matchSet = new MatchSet(answers, criteria);
 		score = matchSet.getScore();
 		return matchSet.matches();
 	}
-	
-	// 중복코드
-	private Answer answerMatching(Criterion criterion) {
-	   return answers.get(criterion.getAnswer().getQuestionText());
+	*/
+	/*
+	 * 입력받은 criteria를 바탕을 MatchSet 인스턴스를 반환하는 메소드를 생성하여
+	 * score나 match 여부를 판단하는 작업은 MatchSet의 메소드를 통해 하도록 refactoring
+	 */
+	public MatchSet getMatchSet(Criteria criteria) {
+		return new MatchSet(answers, criteria);
 	}
 	
 	public int score() {
