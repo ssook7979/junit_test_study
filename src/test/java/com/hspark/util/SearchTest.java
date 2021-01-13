@@ -27,6 +27,12 @@ class SearchTest {
 		stream.close();
 	}
 	
+	/*
+	 * 다음 예제의 경우 "rest of text here", "search term", "more rest of text", 
+	 * "1234567890", "text that doesn't match", "any text" 이 무엇을 의도하는지 명확하다.
+	 * 테스트를 읽는 사람이 굳이 생각하지 않아도 직관적으로 알 수 있는 값과 이름을 지정한다.
+	 */
+	
 	@Test
 	public void returnsMatchesShowingContextWhenSearchStringInContent() throws Exception {
 		stream = streamOn("rest of text here"
