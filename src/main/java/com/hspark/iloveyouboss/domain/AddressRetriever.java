@@ -10,11 +10,7 @@ import com.hspark.util.Http;
 import com.hspark.util.HttpImpl;
 
 public class AddressRetriever {
-	private Http http;
-	
-	public AddressRetriever(Http http) {
-		this.http = http;
-	}
+	private Http http = new HttpImpl();
 
 	public Address retrieve(double latitude, double longitude) throws IOException, ParseException {
 		String parms = String.format("lat=%.6flon=%.6f", latitude, longitude);
