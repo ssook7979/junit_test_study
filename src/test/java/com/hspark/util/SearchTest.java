@@ -1,8 +1,11 @@
 package com.hspark.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static com.hspark.util.ContainsMatches.containsMatches;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
@@ -58,14 +61,37 @@ class SearchTest {
 		
 		assertThat(search.getMatches()).isEmpty();
 	}
-	
-	// 이 assertion은 지금 당장 필요하지 않지만 추후에 다른 테스트에 사용해야 하므로 메모...
-	// TODO:
-	@Test
-	public void noErrorOccurred() {
-		// assertFalse(search.errored());
-	}
 
+	// 새로운 테스트 추가
+	@Test
+	public void returnsErroredWhenUnableToReadStream() {
+	   stream = createStreamThrowingErrorWhenRead();
+	   Search search = new Search(stream, "", "");
+	
+	   search.execute();
+	   
+	   assertTrue(search.errored());
+	}
+	
+	private InputStream createStreamThrowingErrorWhenRead() {
+	   return new InputStream() {
+	      @Override
+	      public int read() throws IOException {
+	         throw new IOException();
+	      }
+	   };
+	}
+	
+	@Test
+	public void erroredReturnsFalseWhenReadSucceeds() {
+	   stream = streamOn("");
+	   Search search = new Search(stream, "", "");
+	   
+	   search.execute();
+	   
+	   assertFalse(search.errored());
+	}
+	
 	private ByteArrayInputStream streamOn(String pageContent) {
 		return new ByteArrayInputStream(pageContent.getBytes());
 	}
