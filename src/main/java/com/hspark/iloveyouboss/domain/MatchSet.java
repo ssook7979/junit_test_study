@@ -1,22 +1,15 @@
 package com.hspark.iloveyouboss.domain;
 
-import java.util.Map;
-
 /*
  * Profile class로부터 score를 계산하는 로직을 분리한다.
  */
 public class MatchSet {
-	// code smell: shotgun surgery(기능의 산재)
-	private Map<String, Answer> answers;
+	private AnswerCollection answers;
 	private Criteria criteria;
 
-	public MatchSet(Map<String, Answer> answers, Criteria criteria) {
+	public MatchSet(AnswerCollection answers, Criteria criteria) {
 		this.answers = answers;
 		this.criteria = criteria;
-	}
-	
-	private Answer answerMatching(Criterion criterion) {
-	   return answers.get(criterion.getAnswer().getQuestionText());
 	}
 	
 	/*
@@ -29,7 +22,7 @@ public class MatchSet {
 	public int getScore() {
 		int score = 0;
 		for (Criterion criterion: criteria) 
-		   if (criterion.matches(answerMatching(criterion))) 
+		   if (criterion.matches(answers.answerMatching(criterion))) 
 		      score += criterion.getWeight().getValue();
 		return score;
 	}
@@ -42,7 +35,7 @@ public class MatchSet {
 	
 	private boolean doesNotMeetAnyMustMatchCriterion(Criteria criteria) {
 		for (Criterion criterion: criteria) {
-		   boolean match = criterion.matches(answerMatching(criterion));
+		   boolean match = criterion.matches(answers.answerMatching(criterion));
 		   if (!match && criterion.getWeight() == Weight.MustMatch) 
 		      return true;
 		}
@@ -52,7 +45,7 @@ public class MatchSet {
 	private boolean anyMatches(Criteria criteria) {
 		boolean anyMatches = false;
 		for (Criterion criterion: criteria) 
-		   anyMatches |= criterion.matches(answerMatching(criterion));
+		   anyMatches |= criterion.matches(answers.answerMatching(criterion));
 		return anyMatches;
 	}
 }

@@ -4,9 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,11 +22,11 @@ class MatchSetTest {
 	private Answer answerNoOnsiteDaycare;
 	private Answer answerHasOnsiteDaycare;
 		
-	private Map<String, Answer> answers;
+	private AnswerCollection answers;
 	
 	@BeforeEach
 	public void createAnswer() {
-		answers = new HashMap<>();
+		answers = new AnswerCollection();
 	}
 		
 	@BeforeEach
@@ -53,7 +50,7 @@ class MatchSetTest {
 	}
 	
 	private void add(Answer answer) {
-		answers.put(answer.getQuestionText(), answer);
+		answers.add(answer);
 	}
 	
 	private MatchSet createMatchSet() {
