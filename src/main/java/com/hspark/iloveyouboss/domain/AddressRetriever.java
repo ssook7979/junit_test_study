@@ -13,14 +13,14 @@ public class AddressRetriever {
 	private Http http = new HttpImpl();
 
 	public Address retrieve(double latitude, double longitude) throws IOException, ParseException {
-		String parms = String.format("lat=%.6flon=%.6f", latitude, longitude);
-		String response = new HttpImpl().get(
+		String parms = String.format("lat=%.6f&lon=%.6f", latitude, longitude);
+		String response = http.get(
 				"http://open.mapquestapi.com/nominatim/v1/reverse?format=json&" + parms);
 		
-		JSONObject obj = (JSONObject)new JSONParser().parse(response);
+		JSONObject obj = (JSONObject) new JSONParser().parse(response);
 		
-		JSONObject address = (JSONObject)obj.get("address");
-		String country = (String)address.get("country_code");
+		JSONObject address = (JSONObject) obj.get("address");
+		String country = (String) address.get("country_code");
 		if (!country.equals("us"))
 		throw new UnsupportedOperationException(
 				"cannot support non-US addresses at this time");
