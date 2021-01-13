@@ -41,7 +41,8 @@ class SearchTest {
 		InputStream inputStream = connection.getInputStream();
 		search = new Search(inputStream, "smelt", "http://bit.ly/15sYPA7");
 		search.execute();
-		assertThat(search.getMatches().size()).isEqualTo(0);
+		// 추상화: size is equal to 0 보다 is empty가 더 가독성 있음 
+		assertThat(search.getMatches()).isEmpty();
 		stream.close();
 
 	}
