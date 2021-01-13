@@ -34,11 +34,12 @@ class SearchTest {
 				+ "takes this whole universe for a vast practical joke, "
 				+ "though the wit thereof he but dimly discerns, and more "
 				+ "than suspects that the joke is at nobody's expense but "
-				+ "his own.");
-		
+				+ "his own.");		
 		Search search = new Search(stream, "practical joke", ANY_TITLE);	
 		search.setSurroundingCharacterCount(10);
-		search.execute();	
+		
+		search.execute();
+		
 		org.hamcrest.MatcherAssert.assertThat(search.getMatches(), containsMatches(new Match[] { 
 		         new Match(ANY_TITLE, "practical joke", 
 		                   "or a vast practical joke, though t") }));		
@@ -49,7 +50,9 @@ class SearchTest {
 		URLConnection connection = new URL("http://bit.ly/15sYPA7").openConnection();
 		InputStream stream = connection.getInputStream();
 		Search search = new Search(stream, "smelt", ANY_TITLE);
-		search.execute();		
+		
+		search.execute();
+		
 		assertThat(search.getMatches()).isEmpty();
 	}
 	
