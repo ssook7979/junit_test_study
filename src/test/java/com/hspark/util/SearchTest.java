@@ -30,6 +30,7 @@ class SearchTest {
 		search.setSurroundingCharacterCount(10);
 		search.execute();
 		assertFalse(search.errored());
+		// 이 여러개의 assertions는 하나의 assertion으로 축약하여 가독성을 높일 수 있다.
 		List<Match> matches = search.getMatches();
 		assertTrue(matches.size() >= 1);
 		Match match = matches.get(0);
