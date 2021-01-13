@@ -8,24 +8,32 @@ import java.io.IOException;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Matchers.contains;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.hspark.util.Http;
 
 class AddressRetrieverTest {
 	@Test
-	public void answersAppropriateAddressForValidCoordinates() throws IOException, ParseException {
-		Http http = (String url) -> 
-		   { 
-		     if (!url.contains("lat=38.000000&lon=-104.000000")) 
-		        fail("url " + url + " does not contain correct parms");
-		     return "{\"address\":{"
-		           + "\"house_number\":\"324\","
-		           + "\"road\":\"North Tejon Street\","
-		           + "\"city\":\"Colorado Springs\","
-		           + "\"state\":\"Colorado\","
-		           + "\"postcode\":\"80903\","
-		           + "\"country_code\":\"us\"}"
-		           + "}";
-		   };
+	public void answersAppropriateAddressForValidCoordinates() throws IOException, ParseException { 
+		/*
+		 *	1. mock 객체 생성
+		 *	2. 기대사항 주입
+		 *	3. 실행 및 검증
+		 *
+		 * 	어떤 메소드가 실행되었는지 검증하려면 verify()를 이용한다(13.1절 참고)
+		 */
+		Http http = mock(Http.class);
+		when(http.get(contains("lat=38.000000&lon=-104.000000"))).thenReturn(
+				"{\"address\":{"
+	           + "\"house_number\":\"324\","
+	           + "\"road\":\"North Tejon Street\","
+	           + "\"city\":\"Colorado Springs\","
+	           + "\"state\":\"Colorado\","
+	           + "\"postcode\":\"80903\","
+	           + "\"country_code\":\"us\"}"
+	           + "}");
 		
 		AddressRetriever retriever = new AddressRetriever(http);
 		
