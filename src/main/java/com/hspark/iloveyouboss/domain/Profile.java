@@ -33,6 +33,16 @@ public class Profile {
 	   answers.put(answer.getQuestionText(), answer);
 	}
 	
+	/*
+	 * Profile class 의도와 맞지 않은 메소드
+	 * - Profile 객체는 단일 점수를 갖지 ㅇ낳으며 조건과 매칭될 때만 점수가 산출된다.
+	 * - matches를 호출하면 score를 저장하게 되는 부작용이 발생한다.
+	 * 		- 메소드의 이름과 Profile 클래스의 의도를 생각했을때 직관에 어긋난다.
+	 * 		- 의도하지 않게 score의 값을 변경할 수 있다.
+	 * => 명령-질의 분리 원칙을 위반한다.
+	 * 	    메소드는 1)명령을 실행(부작용을 생성하는 어떤 작업을 함)하거나 2)질의에 대답(어떤 값 반환)하는 작업을 할 수 있으며,
+	 * 	  두 작업을 모두 하면 안된다.(p.192)
+	 */
 	public boolean matches(Criteria criteria) {
 		MatchSet matchSet = new MatchSet(answers, criteria);
 		score = matchSet.getScore();
