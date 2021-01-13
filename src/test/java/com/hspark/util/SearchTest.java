@@ -35,17 +35,19 @@ class SearchTest {
 		         new Match(ANY_TITLE, "practical joke", 
 		                   "or a vast practical joke, though t") }));
 		stream.close();
-		
-		// negative
+	}
+	
+	// 여러개의 assertion은 다른 Test로 쪼갠다.
+	@Test
+	public void noMatchesReturnedWhenSearchStringNotInContent() throws Exception {
 		URLConnection connection = 
 				new URL("http://bit.ly/15sYPA7").openConnection();
 		InputStream inputStream = connection.getInputStream();
-		search = new Search(inputStream, "smelt", ANY_TITLE);
+		Search search = new Search(inputStream, "smelt", ANY_TITLE);
 		search.execute();
-		// 추상화: size is equal to 0 보다 is empty가 더 가독성 있음 
+		
 		assertThat(search.getMatches()).isEmpty();
-		stream.close();
-
+		inputStream.close();
 	}
 
 	private ByteArrayInputStream streamOn(String pageContent) {
