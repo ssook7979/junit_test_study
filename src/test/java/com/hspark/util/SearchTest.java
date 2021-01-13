@@ -34,7 +34,7 @@ class SearchTest {
 	 */
 	
 	@Test
-	public void returnsMatchesShowingContextWhenSearchStringInContent() throws Exception {
+	public void returnsMatchesShowingContextWhenSearchStringInContent() {
 		stream = streamOn("rest of text here"
 	            + "1234567890search term1234567890"
 	            + "more rest of text");		
@@ -50,7 +50,7 @@ class SearchTest {
 	}
 	
 	@Test
-	public void noMatchesReturnedWhenSearchStringNotInContent() throws Exception {
+	public void noMatchesReturnedWhenSearchStringNotInContent() {
 		stream = streamOn("any text");
 		Search search = new Search(stream, "text that doesn't match", ANY_TITLE);
 		
