@@ -97,9 +97,7 @@ class ProfileTest {
 		criteria.add(new Criterion(answerThereIsRelo, Weight.Important));
 		criteria.add(new Criterion(answerReimburseTuition, Weight.Important));
 		
-		boolean result = profile.matches(criteria);
-		
-		assertTrue(result);
+		assertTrue(profile.matches(criteria));
 	}
 
 }
