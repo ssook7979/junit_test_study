@@ -14,6 +14,8 @@ class ProfileTest {
 	private Answer answerThereIsRelocation;
 	private Answer answerThereIsNotRelocation;
 	private Answer answerDoesNotReimburseTuition;
+	private Answer answerThereIsRelo;
+	private Answer answerReimburseTuition;
 	
 	@BeforeEach
 	public void createProfile() {
@@ -25,8 +27,9 @@ class ProfileTest {
 		questionIsThereRelocation = new BooleanQuestion(1, "Relocation package?");
 		questionReimburseTuition = new BooleanQuestion(2, "ReimburseTuition?");
 		answerThereIsRelocation = new Answer(questionIsThereRelocation, Bool.TRUE);
-		answerThereIsNotRelocation = new Answer(questionIsThereRelocation, Bool.False);
-		answerDoesNotReimburseTuition = new Answer(questionReimburseTuition, Bool.False);
+		answerThereIsNotRelocation = new Answer(questionIsThereRelocation, Bool.FALSE);
+		answerReimburseTuition = new Answer(questionReimburseTuition, Bool.TRUE);
+		answerDoesNotReimburseTuition = new Answer(questionReimburseTuition, Bool.FALSE);
 	}
 	/*
 	 * 시나리오에 따라 실패하는 테스트 작성
@@ -75,6 +78,18 @@ class ProfileTest {
 		Criterion criterion = new Criterion(answerThereIsRelocation, Weight.Important);
 		
 		boolean result = profile.matches(criterion);
+		
+		assertTrue(result);
+	}
+	
+	@Test
+	void matchesWhenAnyofMultipleCriteriaMatch() {
+		profile.add(answerThereIsRelo);
+		Criteria criteria = new Criteria();
+		criteria.add(new Criterion(answerThereIsRelo, Weight.Important));
+		criteria.add(new Criterion(answerReimburseTuition, Weight.Important));
+		
+		boolean result = profile.matches(criteria);
 		
 		assertTrue(result);
 	}

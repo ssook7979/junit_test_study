@@ -12,6 +12,15 @@ public class Profile {
 		return answer != null && answer.match(criterion.getAnswer());
 	}
 
+	/*
+	 * 인터페이스 확장
+	 * - 처음엔 간단히 Criterion을 가지고 코드를 작성해본다. 코드가 완성되면 Criteria로 확장한다.
+	 * 
+	 */
+	public boolean matches(Criteria criteria) {
+		return false;
+	}
+
 	private Answer getMatchingPrfileAnswer(Criterion criterion) {
 		return answers.get(criterion.getAnswer().getQuestionText());
 	}
