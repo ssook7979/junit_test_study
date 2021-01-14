@@ -9,13 +9,17 @@ import org.junit.jupiter.api.Test;
 class ProfileTest {
 	
 	private Profile profile;
+	
 	private Question questionIsThereRelocation;
 	private Question questionReimburseTuition;
+	private Question questionThereIsRelo;
+
 	private Answer answerThereIsRelocation;
 	private Answer answerThereIsNotRelocation;
 	private Answer answerDoesNotReimburseTuition;
 	private Answer answerThereIsRelo;
 	private Answer answerReimburseTuition;
+	private Answer answerThereIsNotRelo;
 	
 	@BeforeEach
 	public void createProfile() {
@@ -26,10 +30,14 @@ class ProfileTest {
 	public void createQuestionAndAnswer() {
 		questionIsThereRelocation = new BooleanQuestion(1, "Relocation package?");
 		questionReimburseTuition = new BooleanQuestion(2, "ReimburseTuition?");
+		questionThereIsRelo = new BooleanQuestion(3, "ThereIsRelo?");
+		
 		answerThereIsRelocation = new Answer(questionIsThereRelocation, Bool.TRUE);
 		answerThereIsNotRelocation = new Answer(questionIsThereRelocation, Bool.FALSE);
 		answerReimburseTuition = new Answer(questionReimburseTuition, Bool.TRUE);
 		answerDoesNotReimburseTuition = new Answer(questionReimburseTuition, Bool.FALSE);
+		answerThereIsRelo = new Answer(questionThereIsRelo, Bool.TRUE);
+		answerThereIsNotRelo = new Answer(questionThereIsRelo, Bool.FALSE);
 	}
 	/*
 	 * 시나리오에 따라 실패하는 테스트 작성
