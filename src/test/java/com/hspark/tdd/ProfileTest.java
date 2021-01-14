@@ -10,6 +10,7 @@ class ProfileTest {
 	
 	private Profile profile;
 	private Question questionIsThereRelocation;
+	private Answer answerThereIsRelocation;
 	
 	@BeforeEach
 	public void createProfile() {
@@ -17,8 +18,9 @@ class ProfileTest {
 	}
 	
 	@BeforeEach
-	public void createQuestion() {
+	public void createQuestionAndAnswer() {
 		questionIsThereRelocation = new BooleanQuestion(1, "Relocation package?");
+		answerThereIsRelocation = new Answer(questionIsThereRelocation, Bool.TRUE);
 	}
 	/*
 	 * 시나리오에 따라 실패하는 테스트 작성
@@ -27,8 +29,7 @@ class ProfileTest {
 	 */
 	@Test
 	void matchesNothingWhenProfileEmpty() {			
-		Criterion criterion = new Criterion(
-				new Answer(questionIsThereRelocation, Bool.TRUE), Weight.DontCare);
+		Criterion criterion = new Criterion(answerThereIsRelocation, Weight.DontCare);
 		
 		boolean result = profile.matches(criterion);
 		
@@ -44,8 +45,7 @@ class ProfileTest {
 	void matchesWhenProfileContainsMatchingAnswer() {
 		Answer answer = new Answer(questionIsThereRelocation, Bool.TRUE);
 		profile.add(answer);
-		Criterion criterion = new Criterion(
-				new Answer(questionIsThereRelocation, Bool.TRUE), Weight.DontCare);
+		Criterion criterion = new Criterion(answerThereIsRelocation, Weight.DontCare);
 		
 		boolean result = profile.matches(criterion);
 		
