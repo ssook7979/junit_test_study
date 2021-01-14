@@ -23,7 +23,7 @@ class ProfileTest {
 	@BeforeEach
 	public void createQuestionAndAnswer() {
 		questionIsThereRelocation = new BooleanQuestion(1, "Relocation package?");
-		questionIsThereRelocation = new BooleanQuestion(2, "ReimburseTuition?");
+		questionReimburseTuition = new BooleanQuestion(2, "ReimburseTuition?");
 		answerThereIsRelocation = new Answer(questionIsThereRelocation, Bool.TRUE);
 		answerThereIsNotRelocation = new Answer(questionIsThereRelocation, Bool.False);
 		answerDoesNotReimburseTuition = new Answer(questionReimburseTuition, Bool.False);

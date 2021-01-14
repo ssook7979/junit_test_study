@@ -12,9 +12,8 @@ public class Profile {
 		return answer != null && answer.match(criterion.getAnswer());
 	}
 
-	private Answer getMatchingPrfileAnswer(Criterion criterion) {
-		// TODO Auto-generated method stub
-		return null;
+	public Answer getMatchingPrfileAnswer(Criterion criterion) {
+		return answers.get(criterion.getAnswer().getQuestionText());
 	}
 
 	public void add(Answer answer) {
