@@ -8,6 +8,9 @@ public class Profile {
 	private Map<String, Answer> answers = new HashMap<>();
 
 	public boolean matches(Criterion criterion) {
+		if (criterion.getWeight() == Weight.DontCare) {
+			return true;
+		}
 		Answer answer = getMatchingPrfileAnswer(criterion);
 		return answer != null && answer.match(criterion.getAnswer());
 	}
@@ -22,7 +25,7 @@ public class Profile {
 		
 		for (Criterion criterion: criteria) {
 			if (criterion.getWeight() == Weight.MustMatch) return false;
-			if (matches(criterion)) matches=true;
+			matches |= matches(criterion);
 		}
 		return matches;
 	}
