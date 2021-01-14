@@ -18,11 +18,13 @@ public class Profile {
 	 * 
 	 */
 	public boolean matches(Criteria criteria) {
+		boolean matches = false;
+		
 		for (Criterion criterion: criteria) {
 			if (criterion.getWeight() == Weight.MustMatch) return false;
-			if (matches(criterion)) return true;
+			if (matches(criterion)) matches=true;
 		}
-		return false;
+		return matches;
 	}
 
 	private Answer getMatchingPrfileAnswer(Criterion criterion) {
