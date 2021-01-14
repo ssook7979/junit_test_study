@@ -25,7 +25,7 @@ public class Profile {
 	 * - 처음엔 간단히 Criterion을 가지고 코드를 작성해본다. 코드가 완성되면 Criteria로 확장한다.
 	 * 
 	 */
-	public boolean matches(Criteria criteria) {
+	public ProfileMatch matches(Criteria criteria) {
 		boolean matches = false;
 		
 		for (Criterion criterion: criteria) {
