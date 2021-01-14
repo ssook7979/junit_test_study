@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 class ProfileTest {
 	
 	private Profile profile;
+	private Criteria criteria;
 	
 	private Question questionIsThereRelocation;
 	private Question questionReimburseTuition;
@@ -24,6 +25,11 @@ class ProfileTest {
 	@BeforeEach
 	public void createProfile() {
 		profile = new Profile();
+	}
+	
+	@BeforeEach
+	public void createCriteria() {
+		criteria = new Criteria();
 	}
 	
 	@BeforeEach
@@ -93,7 +99,6 @@ class ProfileTest {
 	@Test
 	void matchesWhenAnyofMultipleCriteriaMatch() {
 		profile.add(answerThereIsRelo);
-		Criteria criteria = new Criteria();
 		criteria.add(new Criterion(answerThereIsRelo, Weight.Important));
 		criteria.add(new Criterion(answerReimburseTuition, Weight.Important));
 		
