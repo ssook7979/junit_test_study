@@ -6,23 +6,17 @@ public class ProfileMatch {
 	private boolean match;
 	
 	public int getScore() {
-		return score;
+		return 0;
 	}
 	
 	public boolean isMatch() {
 		return match;
 	}
 	
-	public void updateMatch(boolean match) {
-		this.match |= match;
-	}
+
 	
 	public void setMatch(boolean match) {
 		this.match = match;
-	}
-	
-	public void setScore(int score) {
-		this.score = score;
 	}
 
 }

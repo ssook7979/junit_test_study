@@ -32,7 +32,7 @@ public class Profile {
 				match.setMatch(false);
 				return match;
 			}
-			match.updateMatch(matches(criterion));
+			//match.update(criterion.getWeight(), matches(criterion));
 		}
 		return match;
 	}
