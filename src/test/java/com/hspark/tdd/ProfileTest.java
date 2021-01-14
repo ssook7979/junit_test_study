@@ -10,8 +10,10 @@ class ProfileTest {
 	
 	private Profile profile;
 	private Question questionIsThereRelocation;
+	private Question questionReimburseTuition;
 	private Answer answerThereIsRelocation;
 	private Answer answerThereIsNotRelocation;
+	private Answer answerDoesNotReimburseTuition;
 	
 	@BeforeEach
 	public void createProfile() {
@@ -21,8 +23,10 @@ class ProfileTest {
 	@BeforeEach
 	public void createQuestionAndAnswer() {
 		questionIsThereRelocation = new BooleanQuestion(1, "Relocation package?");
+		questionIsThereRelocation = new BooleanQuestion(2, "ReimburseTuition?");
 		answerThereIsRelocation = new Answer(questionIsThereRelocation, Bool.TRUE);
 		answerThereIsNotRelocation = new Answer(questionIsThereRelocation, Bool.False);
+		answerDoesNotReimburseTuition = new Answer(questionReimburseTuition, Bool.False);
 	}
 	/*
 	 * 시나리오에 따라 실패하는 테스트 작성
@@ -62,6 +66,17 @@ class ProfileTest {
 		boolean result = profile.matches(criterion);
 		
 		assertFalse(result);
+	}
+	
+	@Test
+	void matchesWhenContainsMultipleAnswers() {
+		profile.add(answerThereIsRelocation);
+		profile.add(answerDoesNotReimburseTuition);
+		Criterion criterion = new Criterion(answerThereIsRelocation, Weight.Important);
+		
+		boolean result = profile.matches(criterion);
+		
+		assertTrue(result);
 	}
 
 }
