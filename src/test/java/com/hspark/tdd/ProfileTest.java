@@ -11,6 +11,7 @@ class ProfileTest {
 	private Profile profile;
 	private Question questionIsThereRelocation;
 	private Answer answerThereIsRelocation;
+	private Answer answerThereIsNotRelocation;
 	
 	@BeforeEach
 	public void createProfile() {
@@ -50,6 +51,16 @@ class ProfileTest {
 		boolean result = profile.matches(criterion);
 		
 		assertTrue(result);
+	}
+	
+	@Test
+	void doesNotMatchWhenNoMatchingAnswer() {
+		profile.add(answerThereIsNotRelocation);
+		Criterion criterion = new Criterion(answerThereIsNotRelocation, Weight.Important);
+		
+		boolean result = profile.matches(criterion);
+		
+		assertFalse(result);
 	}
 
 }
