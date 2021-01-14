@@ -22,6 +22,11 @@ class ProfileTest {
 		assertFalse(result);
 	}
 	
+	/*
+	 * 시나리오
+	 * Profile에 answer를 추가하고 추가된 것이 criterion의 조건에 맞는지 검사하는 로직을 실행한다.
+	 * 조건 1) profile의 answer이 null이면 안된다. -> 이 조건은 테스트들이 모두 통과할 수 있는 조건이다.
+	 */
 	@Test
 	void matchesWhenProfileContainsMatchingAnswer() {
 		Profile profile = new Profile();

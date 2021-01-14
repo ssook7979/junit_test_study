@@ -2,9 +2,14 @@ package com.hspark.tdd;
 
 public class Profile {
 
+	private Answer answer;
+
 	public boolean matches(Criterion criterion) {
-		// TODO Auto-generated method stub
-		return false;
+		return answer != null;
+	}
+
+	public void add(Answer answer) {
+		this.answer = answer;
 	}
 
 }
