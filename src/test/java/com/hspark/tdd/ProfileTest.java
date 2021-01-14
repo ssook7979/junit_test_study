@@ -122,5 +122,13 @@ class ProfileTest {
 		
 		assertTrue(profile.matches(criterion));
 	}
+	
+	@Test
+	public void scoreIsZeroWhenThereAreNoMatches() {
+		criteria.add(new Criterion(answerThereIsRelo, Weight.Important));
+		
+		ProfileMatch match = profile.matches(criteria);
+		assertThat(match.getScore()).isEqualTo(0);
+	}
 
 }
