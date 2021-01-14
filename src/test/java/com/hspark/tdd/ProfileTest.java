@@ -57,7 +57,7 @@ class ProfileTest {
 	@Test
 	void doesNotMatchWhenNoMatchingAnswer() {
 		profile.add(answerThereIsNotRelocation);
-		Criterion criterion = new Criterion(answerThereIsNotRelocation, Weight.Important);
+		Criterion criterion = new Criterion(answerThereIsRelocation, Weight.Important);
 		
 		boolean result = profile.matches(criterion);
 		

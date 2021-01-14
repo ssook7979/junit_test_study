@@ -2,13 +2,16 @@ package com.hspark.tdd;
 
 public class Answer {
 
-	public Answer(Question question, Bool true1) {
-		// TODO Auto-generated constructor stub
+	private Question question;
+	private Bool bool;
+
+	public Answer(Question question, Bool answer) {
+		this.question = question;
+		this.bool = answer;	
 	}
 
-	public boolean match(Object answer) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean match(Answer answer) {
+		return bool == answer.bool;
 	}
 
 }

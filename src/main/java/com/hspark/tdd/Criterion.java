@@ -10,7 +10,7 @@ public class Criterion {
 		this.weight = weight;
 	}
 
-	public Object getAnswer() {
+	public Answer getAnswer() {
 		return answer;
 	}
 
