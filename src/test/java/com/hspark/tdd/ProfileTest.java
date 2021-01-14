@@ -22,6 +22,7 @@ class ProfileTest {
 	public void createQuestionAndAnswer() {
 		questionIsThereRelocation = new BooleanQuestion(1, "Relocation package?");
 		answerThereIsRelocation = new Answer(questionIsThereRelocation, Bool.TRUE);
+		answerThereIsNotRelocation = new Answer(questionIsThereRelocation, Bool.False);
 	}
 	/*
 	 * 시나리오에 따라 실패하는 테스트 작성
