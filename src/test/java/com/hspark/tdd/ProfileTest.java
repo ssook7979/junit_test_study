@@ -131,5 +131,15 @@ class ProfileTest {
 		ProfileMatch match = profile.matches(criteria);
 		assertThat(match.getScore()).isEqualTo(0);
 	}
+	
+	@Test
+	public void scoreIsGreaterThanZeroWhenThereAreAnyMatches() {
+		criteria.add(new Criterion(answerThereIsRelo, Weight.Important));
+		profile.add(answerThereIsRelo);
+		
+		ProfileMatch match = profile.matches(criteria);
+		
+		assertThat(match.getScore()).isEqualTo(100);
+	}
 
 }

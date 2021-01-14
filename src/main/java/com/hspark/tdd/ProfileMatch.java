@@ -6,7 +6,7 @@ public class ProfileMatch {
 	private boolean match;
 	
 	public int getScore() {
-		return 0;
+		return score;
 	}
 	
 	public boolean isMatch() {
