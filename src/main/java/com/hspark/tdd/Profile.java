@@ -12,7 +12,7 @@ public class Profile {
 		return answer != null && answer.match(criterion.getAnswer());
 	}
 
-	public Answer getMatchingPrfileAnswer(Criterion criterion) {
+	private Answer getMatchingPrfileAnswer(Criterion criterion) {
 		return answers.get(criterion.getAnswer().getQuestionText());
 	}
 

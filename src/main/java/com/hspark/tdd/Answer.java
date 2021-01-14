@@ -11,7 +11,10 @@ public class Answer {
 	}
 
 	public boolean match(Answer answer) {
-		return bool == answer.bool;
+		if (answer != null) {
+			return bool == answer.bool;			
+		}
+		return false;
 	}
 
 	public String getQuestionText() {
