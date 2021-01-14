@@ -8,11 +8,16 @@ public class Profile {
 	private Map<String, Answer> answers = new HashMap<>();
 
 	public boolean matches(Criterion criterion) {
+		Answer answer = getMatchingPrfileAnswer(criterion);
+		
+		if (answer == null) {
+			return false;
+		}
+
 		if (criterion.getWeight() == Weight.DontCare) {
 			return true;
 		}
-		Answer answer = getMatchingPrfileAnswer(criterion);
-		return answer != null && answer.match(criterion.getAnswer());
+		return answer.match(criterion.getAnswer());
 	}
 
 	/*
