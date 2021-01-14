@@ -3,18 +3,30 @@ package com.hspark.tdd;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ProfileTest {
+	
+	private Profile profile;
+	private Question question;
+	
+	@BeforeEach
+	public void createProfile() {
+		profile = new Profile();
+	}
+	
+	@BeforeEach
+	public void createQuestion() {
+		question = new BooleanQuestion(1, "Relocation package?");
+	}
 	/*
 	 * 시나리오에 따라 실패하는 테스트 작성
 	 * 1. BooleanQuestion 타입의 Question을 Criterion에 등록
 	 * 2. Profile에 기준에 맞는 Answer이 없는 경우 False 반환
 	 */
 	@Test
-	void matchesNothingWhenProfileEmpty() {
-		Profile profile = new Profile();
-		Question question = new BooleanQuestion(1, "Relocation package?");
+	void matchesNothingWhenProfileEmpty() {			
 		Criterion criterion = new Criterion(new Answer(question, Bool.TRUE), Weight.DontCare);
 		
 		boolean result = profile.matches(criterion);
@@ -29,8 +41,6 @@ class ProfileTest {
 	 */
 	@Test
 	void matchesWhenProfileContainsMatchingAnswer() {
-		Profile profile = new Profile();
-		Question question = new BooleanQuestion(1, "Relocation package?");
 		Answer answer = new Answer(question, Bool.TRUE);
 		profile.add(answer);
 		Criterion criterion = new Criterion(new Answer(question, Bool.TRUE), Weight.DontCare);
