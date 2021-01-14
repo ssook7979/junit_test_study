@@ -2,8 +2,17 @@ package com.hspark.tdd;
 
 public class BooleanQuestion implements Question {
 
-	public BooleanQuestion(int i, String string) {
-		// TODO Auto-generated constructor stub
+	private int id;
+	private String text;
+
+	public BooleanQuestion(int id, String text) {
+		this.id = id;
+		this.text = text;
+	}
+
+	@Override
+	public String getText() {
+		return text;
 	}
 
 }

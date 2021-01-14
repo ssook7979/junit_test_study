@@ -14,4 +14,8 @@ public class Answer {
 		return bool == answer.bool;
 	}
 
+	public String getQuestionText() {
+		return question.getText();
+	}
+
 }
