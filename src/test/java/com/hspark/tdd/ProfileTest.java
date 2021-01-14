@@ -45,7 +45,7 @@ class ProfileTest {
 	void matchesWhenProfileContainsMatchingAnswer() {
 		Answer answer = new Answer(questionIsThereRelocation, Bool.TRUE);
 		profile.add(answer);
-		Criterion criterion = new Criterion(answerThereIsRelocation, Weight.DontCare);
+		Criterion criterion = new Criterion(answerThereIsRelocation, Weight.Important);
 		
 		boolean result = profile.matches(criterion);
 		
