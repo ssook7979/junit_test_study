@@ -1,5 +1,6 @@
 package com.hspark.tdd;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -102,7 +103,7 @@ class ProfileTest {
 		criteria.add(new Criterion(answerThereIsRelo, Weight.Important));
 		criteria.add(new Criterion(answerReimburseTuition, Weight.Important));
 		
-		assertTrue(profile.matches(criteria));
+		assertTrue(profile.matches(criteria).isMatch());
 	}
 	
 	@Test
@@ -112,7 +113,7 @@ class ProfileTest {
 		criteria.add(new Criterion(answerThereIsRelo, Weight.Important));
 		criteria.add(new Criterion(answerReimburseTuition, Weight.MustMatch));
 		
-		assertFalse(profile.matches(criteria));
+		assertFalse(profile.matches(criteria).isMatch());
 	}
 	
 	@Test

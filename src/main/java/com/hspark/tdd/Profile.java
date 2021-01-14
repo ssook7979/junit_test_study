@@ -26,13 +26,15 @@ public class Profile {
 	 * 
 	 */
 	public ProfileMatch matches(Criteria criteria) {
-		boolean matches = false;
-		
+		ProfileMatch match = new ProfileMatch();
 		for (Criterion criterion: criteria) {
-			if (criterion.getWeight() == Weight.MustMatch) return false;
-			matches |= matches(criterion);
+			if (criterion.getWeight() == Weight.MustMatch) {
+				match.setMatch(false);
+				return match;
+			}
+			match.updateMatch(matches(criterion));
 		}
-		return matches;
+		return match;
 	}
 
 	private Answer getMatchingPrfileAnswer(Criterion criterion) {
