@@ -6,4 +6,9 @@ public class Answer {
 		// TODO Auto-generated constructor stub
 	}
 
+	public boolean match(Object answer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

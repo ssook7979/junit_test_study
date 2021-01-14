@@ -2,8 +2,16 @@ package com.hspark.tdd;
 
 public class Criterion {
 
-	public Criterion(Answer answer, Weight dontcare) {
-		// TODO Auto-generated constructor stub
+	private Answer answer;
+	private Weight weight;
+
+	public Criterion(Answer answer, Weight weight) {
+		this.answer = answer;
+		this.weight = weight;
+	}
+
+	public Object getAnswer() {
+		return answer;
 	}
 
 }
