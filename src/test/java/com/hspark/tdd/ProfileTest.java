@@ -104,5 +104,15 @@ class ProfileTest {
 		
 		assertTrue(profile.matches(criteria));
 	}
+	
+	@Test
+	public void doesNotMatchWhenAnyMustMeetCriteriaNotMet() {
+		profile.add(answerThereIsRelo);
+		profile.add(answerDoesNotReimburseTuition);
+		criteria.add(new Criterion(answerThereIsRelo, Weight.Important));
+		criteria.add(new Criterion(answerReimburseTuition, Weight.MustMatch));
+		
+		assertFalse(profile.matches(criteria));
+	}
 
 }
