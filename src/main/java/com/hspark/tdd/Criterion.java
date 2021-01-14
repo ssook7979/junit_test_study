@@ -14,4 +14,7 @@ public class Criterion {
 		return answer;
 	}
 
+	public Weight getWeight() {
+		return weight;
+	}
 }

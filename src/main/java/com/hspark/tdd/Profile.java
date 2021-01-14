@@ -19,6 +19,7 @@ public class Profile {
 	 */
 	public boolean matches(Criteria criteria) {
 		for (Criterion criterion: criteria) {
+			if (criterion.getWeight() == Weight.MustMatch) return false;
 			if (matches(criterion)) return true;
 		}
 		return false;
